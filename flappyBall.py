@@ -25,5 +25,14 @@ def draw():
 def update(dt):
     uy=b1.vy
     b1.vy+=GRAVITY*dt
-    b1.vy+=(uy+b1.vy)*0.5*dt
+    b1.initialy+=(uy+b1.vy)*0.5*dt   
+    if b1.initialy>HEIGHT-b1.radius:
+        b1.initialy=HEIGHT-b1.radius
+        b1.vy=-b1.vy*0.9 #Inelastic collision
+    b1.initialx+=b1.vx*dt
+    if b1.initialx>WIDTH-b1.radius or b1.initialx<b1.radius:
+        b1.vx=-b1.vx
+def on_key_down(key):
+    if key==keys.SPACE:
+        b1.vy=-500
 pgzrun.go()
